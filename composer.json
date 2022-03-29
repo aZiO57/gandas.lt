@@ -1,0 +1,19 @@
+{
+    "name": "deividas/gandas.lt",
+    "description": "Naujienu portalas",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "" : "app/code"
+        }
+    },
+    "authors": [
+        {
+            "name": "deividas",
+            "email": "deividask123@gmail.com"
+        }
+    ],
+    "require": {
+        "aura/sqlquery": "^2.7"
+    }
+}
