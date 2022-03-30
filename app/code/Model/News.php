@@ -26,48 +26,32 @@ class News extends ModelAbstract
 
     private string $createdAt;
 
-    /**
-     * @return int
-     */
-    public function getId(): int
+
+    public function getId()
     {
         return $this->id;
     }
-    /**
-     * @param int $id
-     */
-    public function setId(int $id): void
-    {
-        $this->id = $id;
-    }
-    /**
-     * @return string
-     */
-    public function getTitle(): string
+
+    public function getTitle()
     {
         return $this->title;
     }
-    /**
-     * @param string $title
-     */
-    public function setTitle(string $title): void
+
+    public function setTitle($title)
     {
         $this->title = $title;
     }
-    /**
-     * @return string
-     */
-    public function getContent(): string
+
+    public function getContent()
     {
         return $this->content;
     }
-    /**
-     * @param string $content
-     */
-    public function setContent(string $content): void
+
+    public function setContent($content)
     {
         $this->content = $content;
     }
+
     /**
      * @return int
      */
@@ -96,9 +80,7 @@ class News extends ModelAbstract
     {
         $this->active = $active;
     }
-    /**
-     * @return int
-     */
+
     public function getViews(): int
     {
         return $this->views;
@@ -153,8 +135,37 @@ class News extends ModelAbstract
         $this->createdAt = $createdAt;
     }
 
-    public function loadBySlug($slug)
+    public function loadBySlug(string $slug): ?News
     {
-        $this->select()->from('news')->where('slug = :slug', ['slug' => $slug]);
+        $sql = $this->select();
+        $sql->cols(['*'])->from('news')->where('slug = :slug');
+        $sql->bindValue('slug', $slug);
+        if ($rez = $this->db->get($sql)) {
+            $this->id = (int)$rez['id'];
+            $this->title = $rez['title'];
+            $this->content = $rez['content'];
+            $this->authorId = (int)$rez['author_id'];
+            $this->createdAt = $rez['created_at'];
+            $this->active = (int) $rez['active'];
+            $this->views = (int) $rez['views'];
+            $this->slug = $rez['slug'];
+            $this->image = $rez['image'];
+            return $this;
+        } else {
+            return null;
+        }
+    }
+    public function getArticles()
+    {
+        $sql = $this->select();
+        $sql->cols(['*'])->from('news');
+        $rez = $this->db->get($sql);
+        $ads = [];
+        foreach ($rez as $value) {
+            $ad = new DB();
+            $ad->load($value['id']);
+            $ads[] = $ad;
+        }
+        return $ads;
     }
 }
