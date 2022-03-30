@@ -1,4 +1,4 @@
-# Senienos.lt
+# Gandas.lt
 ## open source new portal stealing all news from apis and translating them to LT
 
 # install

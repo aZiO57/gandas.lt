@@ -19,7 +19,7 @@ class ModelAbstract
     }
     protected function insert()
     {
-        return $this->queryFactory->newInser();
+        return $this->queryFactory->newInsert();
     }
     protected function update()
     {
