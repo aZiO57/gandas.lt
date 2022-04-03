@@ -15,7 +15,11 @@ class News extends ControllerAbstract
 
     public function index()
     {
-        $news = new \Model\News();
-        echo $this->twig->render('news/all.html', ['news' => $news->getAllArticles()]);
+        $newsObj = new \Model\News();
+        $news = $newsObj->getAllArticles();
+        foreach ($news as &$new) {
+            $new["short_content"] = mb_strimwidth($new["content"], 0, 100, "...");
+        }
+        echo $this->twig->render('news/all.html', ['news' => $news]);
     }
 }
