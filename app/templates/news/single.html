@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block title %}{{new.title}}{% endblock %}
+{% block head %}
+{{ parent() }}
+
+{% endblock %}
+{% block content %}
+<h1>{{new.title}}</h1>
+<p class="important">
+    
+    {{new.content}}
+</p>
+{% endblock %}

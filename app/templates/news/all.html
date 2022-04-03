@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block title %}Naujienos{% endblock %}
+{% block head %}
+{{ parent() }}
+
+{% endblock %}
+
+{% block content %}
+<div class="row mb-2">
+{% for new in news %}
+    <div class="col-md-6">
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+          <h3 class="mb-0">{{ new.title }}</h3>
+          <div class="mb-1 text-muted">{{ new.created_at }}</div>
+          <p class="card-text mb-auto">{{ new.content }} </p>
+          <a href="http://localhost/pub/index.php/{{new.slug}}" class="stretched-link">Continue reading</a>
+        </div>
+        <div class="col-auto d-none d-lg-block">
+        <img src="{{new.image}}" width= "200" height= "200" />
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+{% endblock %}

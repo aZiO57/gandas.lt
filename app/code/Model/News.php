@@ -155,17 +155,11 @@ class News extends ModelAbstract
             return null;
         }
     }
-    public function getArticles()
+    public function getAllArticles()
     {
         $sql = $this->select();
         $sql->cols(['*'])->from('news');
-        $rez = $this->db->get($sql);
-        $ads = [];
-        foreach ($rez as $value) {
-            $ad = new DB();
-            $ad->load($value['id']);
-            $ads[] = $ad;
-        }
-        return $ads;
+        $rez = $this->db->getAll($sql);
+        return $rez;
     }
 }

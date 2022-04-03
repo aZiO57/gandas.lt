@@ -12,6 +12,8 @@ class ControllerAbstract
         $this->twig = new \Twig\Environment($loader, [
             // 'cache' => PROJECT_ROOT . '/var/compilation_cache',
             'cache' => false,
+            'debug' => true,
         ]);
+        $this->twig->addExtension(new \Twig\Extension\DebugExtension());
     }
 }

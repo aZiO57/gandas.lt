@@ -10,12 +10,12 @@ class News extends ControllerAbstract
     {
         $new = new \Model\News();
         $new->loadBySlug($slug);
-        echo $this->twig->render('single.html', ['new' => $new]);
+        echo $this->twig->render('news/single.html', ['new' => $new]);
     }
 
-
-    public function showArticles(string $slug)
+    public function index()
     {
-        $new = new \Model\News();
+        $news = new \Model\News();
+        echo $this->twig->render('news/all.html', ['news' => $news->getAllArticles()]);
     }
 }
