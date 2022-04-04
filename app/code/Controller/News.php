@@ -6,6 +6,7 @@ use Core\ControllerAbstract;
 
 class News extends ControllerAbstract
 {
+
     public function show(string $slug)
     {
         $new = new \Model\News();
@@ -13,13 +14,10 @@ class News extends ControllerAbstract
         echo $this->twig->render('news/single.html', ['new' => $new]);
     }
 
-    public function index()
+    public function all()
     {
-        $newsObj = new \Model\News();
-        $news = $newsObj->getAllArticles();
-        foreach ($news as &$new) {
-            $new["short_content"] = mb_strimwidth($new["content"], 0, 100, "...");
-        }
-        echo $this->twig->render('news/all.html', ['news' => $news]);
+        $news = new \Model\Collections\News();
+        $news->filter('active', 1);
+        echo $this->twig->render('news/all.html', ['news' => $news->get()]);
     }
 }
