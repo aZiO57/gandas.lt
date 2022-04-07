@@ -6,9 +6,7 @@ use Core\CollectionAbstract;
 
 class News extends CollectionAbstract
 {
-
     const TABLE = 'news';
-
 
     public function get(): array
     {

@@ -3,8 +3,8 @@
 include '../config.php';
 include '../vendor/autoload.php';
 
-$router = new Core\Router();
-$launcher = new core\Launcher();
+$router = new \Core\Router();
+$launcher = new \Core\Launcher();
 
 if (DEBUG_MODE) {
     ini_set('display_errors', 1);

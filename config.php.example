@@ -6,3 +6,4 @@ define('DB_PASS', '');
 define('DB_HOST', 'host_name');
 define('PROJECT_ROOT', __DIR__);
 define('DEBUG_MODE', true);
+define('WEBIT_api_key', '************************');

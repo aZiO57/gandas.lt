@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block title %}Registracija{% endblock %}
+{% block head %}
+{{ parent() }}
+
+{% endblock %}
+
+<div class="container">
+    <form action="" method="http://localhost/users/create">
+        <div>
+            <input type="text" name="name" placeholder="Vardas">
+        </div>
+        <div>
+            <input type="text" name="last_name" placeholder="Pavarde">
+        </div>
+        <div>
+            <input type="text" name="email" placeholder="Email">
+        </div>
+        <div>
+            <input type="password" name="password" placeholder="********">
+        </div>
+        <div>
+            <input type="text" name="nickname" placeholder="Nick'as">
+        </div>
+        <div>
+            <input type="submit" value="Registruotis">
+        </div>
+    </form>    
+</div>
+{% endblock %}

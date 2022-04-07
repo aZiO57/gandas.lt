@@ -8,7 +8,7 @@ use Core\ModelAbstract;
 
 class News extends ModelAbstract
 {
-    private int $id;
+    const TABLE = 'news';
 
     private string $title;
 
@@ -25,7 +25,6 @@ class News extends ModelAbstract
     private string $image;
 
     private string $createdAt;
-
 
     public function getId()
     {
@@ -174,5 +173,17 @@ class News extends ModelAbstract
         } else {
             return null;
         }
+    }
+    public function assignData(): void
+    {
+        $this->data = [
+            'title' => $this->title,
+            'content' => $this->content,
+            'author_id' => $this->authorId,
+            'active' => $this->active,
+            'views' => $this->views,
+            'slug' => $this->slug,
+            'image' => $this->image
+        ];
     }
 }
