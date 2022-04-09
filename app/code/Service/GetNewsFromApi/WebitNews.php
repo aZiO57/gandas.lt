@@ -39,10 +39,13 @@ class WebitNews
             $newsFromWebit = $response->data->results;
             foreach ($newsFromWebit as $newFromWebit) {
                 $new = new News();
-                $new->setTitle($newFromWebit->title);
+                $translate = new Translate();
+                $title = $translate->exec($newFromWebit->title);
+                $new->setTitle($title);
                 $new->setSlug(str_replace(' ', '-', $newFromWebit->title));
                 if (isset($newFromWebit->description)) {
-                    $new->setContent($newFromWebit->description);
+                    $content = $translate->exec($newFromWebit->description);
+                    $new->setContent($content);
                 } else {
                     $new->setContent('Cia buvo tik skambi antraste ;)');
                 }
